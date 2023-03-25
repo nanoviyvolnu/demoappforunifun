@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Search</title>
+</head>
+<body>
+<center>
+<form method="post" action="/userSearch">
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" name="firstName">
+    <br>
+    <br>
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" name="lastName">
+    <br>
+    <br>
+    <button type="submit">Search</button>
+</form>
+</center>
+<form style="justify-content:center; display: flex;">
+    <div th:switch="${users}">
+        <h2 th:case="null">No users found!</h2>
+        <div th:case="*">
+            <h2>Users</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>First name</th>
+                    <th>Last name</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.id}"></td>
+                    <td th:text="${user.firstName}"></td>
+                    <td th:text="${user.lastName}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <p><a href="/userList">User list</a></p>
+    </div>
+</form>
+</div>
+</body>
+</html>
